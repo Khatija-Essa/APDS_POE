@@ -1,0 +1,60 @@
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow: hidden; 
+  display: flex; 
+  flex-direction: column; 
+  background: linear-gradient(135deg, black, gold); 
+}
+
+
+.home-container {
+  flex-grow: 1; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+  text-align: center; 
+  color: rgb(248, 247, 247); 
+  padding: 20px; 
+  box-sizing: border-box; 
+}
+
+.home-title {
+  font-size: 48px; 
+  font-weight: bold; 
+  margin-bottom: 70px; 
+  margin-top: 200px;
+}
+
+.home-description {
+  font-size: 24px; 
+  font-weight: bold; 
+  margin-bottom: 50px; 
+  line-height: 1.5; 
+}
+
+
+.button-group {
+  display: flex; 
+  justify-content: center; 
+  gap: 15px; 
+}
+
+.home-button {
+  background-color: #f0b400; 
+  color: #141414;
+  padding: 15px 30px; 
+  font-size: 16px; 
+  border: none; 
+  font-weight: bold;
+  border-radius: 8px; 
+  cursor: pointer; 
+}
+
+.home-button:hover {
+  background-color: #f5d142; 
+}

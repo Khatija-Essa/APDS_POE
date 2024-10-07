@@ -50,7 +50,7 @@ function Payment() {
             }
 
             // Send payment data to backend
-            const response = await fetch("/api/make-payment", {
+            const response = await fetch("https://localhost:3001/payment/make-payment", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

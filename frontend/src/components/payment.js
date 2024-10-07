@@ -19,7 +19,11 @@ async function submitPayment() {
         return;
     }
     if (!recipientAccount || !/^\d{10}$/.test(recipientAccount)) {
+
         alert("Recipient account number should be 10 digits.");0
+
+        alert("Recipient account number should be 10 digits.");
+
         return;
     }
     if (!swiftCode || swiftCode.length < 8 || swiftCode.length > 11) {

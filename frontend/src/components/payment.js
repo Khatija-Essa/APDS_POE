@@ -1,76 +1,139 @@
-// payment.js
-import React from 'react';
+import React, { useState } from 'react';
+import './Register.css'; 
 
-// Function to handle payment submission
-async function submitPayment() {
-    // Get payment details from form inputs
-    const amount = document.getElementById("amount").value;
-    const currency = document.getElementById("currency").value;
-    const recipientAccount = document.getElementById("recipientAccount").value;
-    const swiftCode = document.getElementById("swiftCode").value;
+function Payment() {
+    const [payment, setPayment] = useState({
+        amount: '',
+        currency: '',
+        recipientAccount: '',
+        swiftCode: '',
+    });
 
-    // Validate input
-    if (!amount || isNaN(amount) || amount <= 0) {
-        alert("Please enter a valid amount.");
-        return;
-    }
-    if (!currency || currency.length !== 3) {
-        alert("Please enter a valid 3-letter currency code.");
-        return;
-    }
-    if (!recipientAccount || !/^\d{10}$/.test(recipientAccount)) {
+    const [error, setError] = useState("");
 
-        alert("Recipient account number should be 10 digits.");0
-
-        alert("Recipient account number should be 10 digits.");
-
-        return;
-    }
-    if (!swiftCode || swiftCode.length < 8 || swiftCode.length > 11) {
-        alert("Please enter a valid SWIFT code (8-11 characters).");
-        return;
+    // Update payment form fields
+    function updatePayment(value) {
+        return setPayment((prev) => ({ ...prev, ...value }));
     }
 
-    // Prepare payment data object
-    const paymentData = {
-        amount,
-        currency: currency.toUpperCase(), // Normalize to uppercase
-        recipientAccount,
-        swiftCode: swiftCode.toUpperCase(), // Normalize to uppercase
-    };
+    async function submitPayment(e) {
+        e.preventDefault();
+        setError("");
 
-    try {
-        // Fetch token from session storage (user is already authenticated)
-        const token = sessionStorage.getItem("authToken");
+        const { amount, currency, recipientAccount, swiftCode } = payment;
 
-        if (!token) {
-            alert("Unauthorized access. Please log in again.");
+        // Validate input
+        if (!amount || isNaN(amount) || amount <= 0) {
+            setError("Please enter a valid amount.");
+            return;
+        }
+        if (!currency || currency.length !== 3) {
+            setError("Please enter a valid 3-letter currency code.");
+            return;
+        }
+        if (!recipientAccount || !/^\d{10}$/.test(recipientAccount)) {
+            setError("Recipient account number should be 10 digits.");
+            return;
+        }
+        if (!swiftCode || swiftCode.length < 8 || swiftCode.length > 11) {
+            setError("Please enter a valid SWIFT code (8-11 characters).");
             return;
         }
 
-        // Send payment data to backend
-        const response = await fetch("/api/make-payment", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}` // Pass token for authentication
-            },
-            body: JSON.stringify(paymentData)
-        });
+        try {
+            const token = localStorage.getItem("jwt")
+            console.log(token)
 
-        // Handle backend response
-        const result = await response.json();
+            if (!token) {
+                alert("Unauthorized access. Please log in again.");
+                return;
+            }
 
-        if (response.ok) {
-            alert("Payment processed successfully");
-        } else {
-            alert(`Payment failed: ${result.message}`);
+            // Send payment data to backend
+            const response = await fetch("/api/make-payment", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+                body: JSON.stringify({
+                    amount,
+                    currency: currency.toUpperCase(),
+                    recipientAccount,
+                    swiftCode: swiftCode.toUpperCase(),
+                }),
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                alert("Payment processed successfully");
+            } else {
+                setError(`Payment failed: ${result.message}`);
+            }
+        } catch (error) {
+            console.error("Payment submission error:", error);
+            setError("There was an error processing your payment. Please try again later.");
         }
-    } catch (error) {
-        console.error("Payment submission error:", error);
-        alert("There was an error processing your payment. Please try again later.");
     }
+
+    return (
+        <div className="login-container mt-5">
+            <h3 className="login-title mb-3">Make a Payment</h3>
+            {error && <div className="alert alert-danger">{error}</div>}
+            <form onSubmit={submitPayment} className="login-form">
+                <div className="mb-3">
+                    <label htmlFor="amount" className="form-label">Amount</label>
+                    <input
+                        type="number"
+                        className="form-control"
+                        id="amount"
+                        placeholder="Enter amount"
+                        value={payment.amount}
+                        onChange={(e) => updatePayment({ amount: e.target.value })}
+                        required
+                    />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="currency" className="form-label">Currency</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="currency"
+                        placeholder="Enter currency code (e.g., USD)"
+                        value={payment.currency}
+                        onChange={(e) => updatePayment({ currency: e.target.value })}
+                        required
+                    />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="recipientAccount" className="form-label">Recipient Account</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="recipientAccount"
+                        placeholder="Enter 10-digit account number"
+                        value={payment.recipientAccount}
+                        onChange={(e) => updatePayment({ recipientAccount: e.target.value })}
+                        required
+                    />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="swiftCode" className="form-label">SWIFT Code</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="swiftCode"
+                        placeholder="Enter SWIFT code"
+                        value={payment.swiftCode}
+                        onChange={(e) => updatePayment({ swiftCode: e.target.value })}
+                        required
+                    />
+                </div>
+                <button type="submit" className="btn">Pay Now</button>
+            </form>
+        </div>
+    );
 }
 
-// Attach event listener to the 'Pay Now' button
-document.getElementById("payNowButton").addEventListener("click", submitPayment);
+export default Payment;

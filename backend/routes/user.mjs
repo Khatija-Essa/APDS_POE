@@ -135,6 +135,7 @@ router.post("/login", bruteforce.prevent, async (req, res) => {
                 fullName: user.fullName
             });
             console.log("New token generated for user:", user.username);
+            console.log("token: " + token)
         }
     } catch (error) {
         console.error("Login error:", error);

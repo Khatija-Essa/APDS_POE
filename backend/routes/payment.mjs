@@ -2,6 +2,7 @@ import express from "express";
 import db from "../db/conn.mjs";
 import jwt from "jsonwebtoken";
 import ExpressBrute from "express-brute";
+import checkauth from "../check-auth.mjs";
 
 const router = express.Router();
 const store = new ExpressBrute.MemoryStore();
@@ -23,20 +24,10 @@ const validatePaymentInput = (input) => {
     return null;
 };
 
-// Middleware to authenticate and authorize users
-const authenticateUser = (req, res, next) => {
-    const token = req.headers.authorization?.split(" ")[1];
-    if (!token) return res.status(401).json({ message: "Unauthorized access" });
 
-    jwt.verify(token, "this_secret_should_be_longer_than_it_is", (err, user) => {
-        if (err) return res.status(403).json({ message: "Token is invalid or expired" });
-        req.user = user;
-        next();
-    });
-};
 
 // POST endpoint to process payments
-router.post("/make-payment", bruteforce.prevent, authenticateUser, async (req, res) => {
+router.post("/make-payment", bruteforce.prevent, checkauth, async (req, res) => {
     try {
         const { amount, currency, recipientAccount, swiftCode } = req.body;
 

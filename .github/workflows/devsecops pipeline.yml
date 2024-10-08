@@ -23,21 +23,32 @@ jobs:
         with:
           node-version: '18'
 
-      # Step 3: Clean install dependencies
-      - name: Clean install dependencies
+      # Step 3: Install backend dependencies
+      - name: Install backend dependencies
         run: |
           cd backend
-          rm -rf node_modules package-lock.json
           npm install
 
-      # Step 4: Start the application
-      - name: Start the application
+      # Step 4: Start the backend application
+      - name: Start the backend application
         run: |
           cd backend
-          npm start
+          node server.mjs &  # Run in the background
 
-      # Step 5: Run tests (optional)
+      # Step 5: Install frontend dependencies
+      - name: Install frontend dependencies
+        run: |
+          cd frontend
+          npm install
+
+      # Step 6: Start the frontend application
+      - name: Start the frontend application
+        run: |
+          cd frontend
+          npm start &  # Run in the background
+
+      # Step 7: Optionally, you can run tests or other commands
       - name: Run tests
         run: |
           cd backend
-          npm test
+          npm test  # Adjust as necessary for your backend test command

@@ -13,25 +13,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout code
+    
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Set up JDK
+    
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          java-version: '17'  # Specify your Java version
-          distribution: 'adopt'  # Optional
+          java-version: '17'  
+          distribution: 'adopt'  
 
-     # Step 3: Install dependencies
-      - name: Install dependencies
-        run: npm install
+    
 
-      # Step 4: Build the project
-      - name: Build the project
-        run: npm run build
-
-      # Step 4: Run tests
+      
       - name: Run tests
         run: mvn test

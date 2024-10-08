@@ -131,6 +131,7 @@ Implement unit tests for both frontend and backend components using testing fram
 - Thabani Shabalala
 - Nkosinomusa Hadebe
 - Naledi Malunga
+- Khatija Essa
 - Sherel Davaraj
 
 

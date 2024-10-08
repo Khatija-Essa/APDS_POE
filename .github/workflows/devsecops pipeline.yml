@@ -13,19 +13,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    
+      # Step 1: Checkout code
       - name: Checkout code
         uses: actions/checkout@v3
 
-    
-      - name: Set up JDK
-        uses: actions/setup-java@v3
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          java-version: '17'  
-          distribution: 'adopt'  
+          node-version: '18'  # Specify your Node.js version
 
-    
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
 
-      
+      # Step 4: Run tests
       - name: Run tests
-        run: mvn test
+        run: npm test  # Replace with your test command if applicable

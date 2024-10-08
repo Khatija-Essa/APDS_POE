@@ -23,14 +23,18 @@ jobs:
         with:
           node-version: '18'
 
-      # Step 3: Install dependencies
+      # Step 3: Change to backend directory (if necessary)
+      - name: Change to backend directory
+        run: cd backend  # Use the actual subdirectory where your package.json is
+
+      # Step 4: Install dependencies
       - name: Install dependencies
         run: npm install
 
-      # Step 4: Start development server
+      # Step 5: Start development server
       - name: Start development server
         run: npm run dev
 
-      # Step 5: Run tests
+      # Step 6: Run tests
       - name: Run tests
-        run: npm test  # You currently have a placeholder test script
+        run: npm test

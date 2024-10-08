@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project focuses on building a secure **Customer International Payments Portal** for an internal banking system. The portal will manage sensitive customer data, international payments, and bank transactions with a strong emphasis on security and compliance. The solution includes a **React** or **Angular** frontend and a backend **API** that ensures secure customer interaction and seamless processing of payments through **SWIFT**.
+This project focuses on building a secure **Customer International Payments Portal** for an internal banking system. Our applicatio  is called Money Gold which is a  portal that  will manage sensitive customer data, international payments, and bank transactions with a strong emphasis on security and compliance. The solution includes a **React** or **Angular** frontend and a backend **API** that ensures secure customer interaction and seamless processing of payments through **SWIFT**.
 
 ### Purpose
 
@@ -14,25 +14,27 @@ The portal allows customers to register and execute international payments, whil
 
 ### Customer Features
 
-1. **Registration**:
+1. **Home page**:
+   - The first interface is a homepage and it explains what money gold is about.
+   - The users has the options to register if they are not a user or to sign in to the application .
+     
+   ![IMG-20241008-WA0008](https://github.com/user-attachments/assets/642c5899-3d51-41d8-8962-66ddf1193923)
+
+
+2. **Registration**:
    - Customers must provide their full name, ID number, account number, and password to register.
    - Passwords are securely hashed and salted to safeguard against unauthorized access.
-   - Registration forms are protected using whitelisted **RegEx** patterns to prevent injection attacks and data breaches.
+     
+     ![IMG-20241008-WA0010](https://github.com/user-attachments/assets/fbe11206-b546-459d-be31-3afe64302f1a)
 
-2. **Login**:
+
+3. **Login**:
    - Customers log in using their username, account number, and password.
    - **RegEx**-based input validation ensures that only valid data is accepted.
+     
+![IMG-20241008-WA0009](https://github.com/user-attachments/assets/adbf0f88-8764-481e-974e-ad45242cd149)
 
 ---
-
-## Installation and Setup
-
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/your-repository/Customer-International-Payments-Portal.git
-
-Here's the content formatted for a GitHub README.md file:
-
 
 ## Technologies Used
 
@@ -57,7 +59,8 @@ Here's the content formatted for a GitHub README.md file:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-repository/Customer-International-Payments-Portal.git
+   git clone https://github.com/Khatija-Essa/APDS_POE
+
 
 2. Install Dependencies: After cloning the repository, navigate to the frontend and backend directories to install all necessary dependencies.
 
@@ -70,19 +73,14 @@ npm install
 
 3. Configure Environment Variables: Create a .env file in both the frontend and backend directories to store sensitive configuration values such as:
 
-Database credentials
-
+Database credentials:
 API keys
-
 JWT secret
-
 SSL certificate paths
 
 
 4. Run the Application:
-
 Start the frontend:
-
 cd frontend
 npm start
 
@@ -90,10 +88,6 @@ Start the backend:
 
 cd backend
 npm start
-
-
-
-
 
 ---
 
@@ -122,9 +116,6 @@ Sensitive data such as payment information is encrypted when stored in the datab
 
 4. Session Management:
 JWT (JSON Web Tokens) are used to securely manage user authentication and sessions, ensuring that unauthorized users cannot access the portal.
-
-
-
 
 
 ---

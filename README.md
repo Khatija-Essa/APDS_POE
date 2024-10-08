@@ -36,6 +36,49 @@ The portal allows customers to register and execute international payments, whil
      
 ![IMG-20241008-WA0009](https://github.com/user-attachments/assets/adbf0f88-8764-481e-974e-ad45242cd149)
 
+PAYMENT USER GUIDE:
+How It Works
+1. Logging In
+Before you can access the payment features, you must be logged into your account
+Already registered? 
+You only need to sign in with your user name and password.
+New user?
+ In order to continue, please, sign up for an account.
+After that, you will be able to perform payments after logging in to the application.
+
+2. Payment Process
+Navigate to the Payment Page
+Once logged in click on the Payment tab in the application.
+
+Enter Payment Details
+To complete a payment, provide the following details:
+Username: Your registered username.
+Account Number: Your special ten digits account number.
+Amount: The quantity desired to be paid (must be greater than zero).
+Currency: Type in the 3-letter world ISO code (USD, EUR, GBP, etc.).
+SWIFT Code: The SWIFT code of your bank – an 8-to-11-digit code.
+
+Submit Payment
+After duplicating all the information needed fields appear hit the blue button named Submit Payment.
+It will then check your details and make payment on the application that you provided identifies.
+
+3. Confirmation 
+Which are important statements that are issued to reflect final approval of the credit given to a customer.
+You will receive a confirmation message after your payment processes are completed.
+This message includes:
+
+Your Transaction ID
+The Amount Paid, specified in any currency selected.
+
+4. Error Handling
+If your payment failed to be processed you will receive a message indicating the kind of error that has occurred. 
+Common error messages may include:
+Earlier, the username attribute was mandatory, as well as the fact that it had to be at least 3 characters long.
+•	‘Account number’ is mandatory and must be an integer of 10 digits long.”
+•	“an acceptable value can be given in the form of the payment amount and that payment amount is supposed to be a positive value.”
+•	It’s a mandatory field and it should be a valid ISO 3 alphabetic code.
+•	‘It should be a proper SWIFT code, containing no more than 11 and no less than 8 characters.’
+
 ---
 
 ## Technologies Used
@@ -127,6 +170,8 @@ Testing and Deployment
 1. Unit Testing:
 
 Implement unit tests for both frontend and backend components using testing frameworks such as Jest or Mocha to ensure the reliability and integrity of the system.
+
+
 
 # Contact:
 - Thabani Shabalala

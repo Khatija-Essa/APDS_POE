@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import './Register.css'; 
+import React, { useState, useEffect } from 'react';
+import './Register.css';
 
 function Payment() {
     const [payment, setPayment] = useState({
@@ -9,9 +9,44 @@ function Payment() {
         swiftCode: '',
     });
 
+    const [username, setUsername] = useState('');
     const [error, setError] = useState("");
 
-    // Update payment form fields
+    // Fetch the username on component load
+    useEffect(() => {
+        const fetchUsername = async () => {
+            const token = localStorage.getItem("jwt");
+
+            if (!token) {
+                setError("Unauthorized access. Please log in again.");
+                return;
+            }
+
+            try {
+                const response = await fetch("https://localhost:3001/user/details", {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`,
+                    },
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    setUsername(result.client_details); // Assuming API response has `client_details`
+                } else {
+                    setError(`Failed to fetch user details: ${result.message}`);
+                }
+            } catch (error) {
+                console.error("Error fetching user details:", error);
+                setError("There was an error fetching your details. Please try again later.");
+            }
+        };
+
+        fetchUsername();
+    }, []);
+
     function updatePayment(value) {
         return setPayment((prev) => ({ ...prev, ...value }));
     }
@@ -22,7 +57,6 @@ function Payment() {
 
         const { amount, currency, recipientAccount, swiftCode } = payment;
 
-        // Validate input
         if (!amount || isNaN(amount) || amount <= 0) {
             setError("Please enter a valid amount.");
             return;
@@ -41,15 +75,8 @@ function Payment() {
         }
 
         try {
-            const token = localStorage.getItem("jwt")
-            console.log(token)
+            const token = localStorage.getItem("jwt");
 
-            if (!token) {
-                alert("Unauthorized access. Please log in again.");
-                return;
-            }
-
-            // Send payment data to backend
             const response = await fetch("https://localhost:3001/payment/make-payment", {
                 method: "POST",
                 headers: {
@@ -82,6 +109,16 @@ function Payment() {
             <h3 className="login-title mb-3">Make a Payment</h3>
             {error && <div className="alert alert-danger">{error}</div>}
             <form onSubmit={submitPayment} className="login-form">
+                <div className="mb-3">
+                    <label htmlFor="username" className="form-label">Username</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="username"
+                        value={username}
+                        readOnly
+                    />
+                </div>
                 <div className="mb-3">
                     <label htmlFor="amount" className="form-label">Amount</label>
                     <input

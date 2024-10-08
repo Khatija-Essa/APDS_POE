@@ -24,7 +24,7 @@ export default function Register() {
         setError("");
 
         try {
-            const response = await fetch("https://localhost:3001/user/signup", {
+            const response = await fetch("https://localhost:3001/user/signup/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

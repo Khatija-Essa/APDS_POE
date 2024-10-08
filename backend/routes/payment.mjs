@@ -24,8 +24,6 @@ const validatePaymentInput = (input) => {
     return null;
 };
 
-
-
 // POST endpoint to process payments
 router.post("/make-payment", bruteforce.prevent, checkauth, async (req, res) => {
     try {
@@ -37,9 +35,17 @@ router.post("/make-payment", bruteforce.prevent, checkauth, async (req, res) => 
             return res.status(400).json({ message: validationError });
         }
 
+        // Fetch user from MongoDB based on unique identifier from `checkauth`
+        const usersCollection = await db.collection("users");
+        const user = await usersCollection.findOne({ _id: req.user.username });
+
+        if (!user || !user.client_details) {
+            return res.status(404).json({ message: "User or client details not found" });
+        }
+
         // Prepare sanitized payment data
         const sanitizedData = {
-            userId: req.user.username, // Assuming username is a unique identifier
+            username: user.client_details, // Use the `client_details` field from MongoDB
             amount: parseFloat(amount),
             currency: currency.toUpperCase(),
             recipientAccount: recipientAccount.trim(),
@@ -48,10 +54,10 @@ router.post("/make-payment", bruteforce.prevent, checkauth, async (req, res) => 
             timestamp: new Date(),
         };
 
-        const collection = await db.collection("transactions");
+        const transactionsCollection = await db.collection("transactions");
 
         // Insert the transaction data
-        const result = await collection.insertOne(sanitizedData);
+        const result = await transactionsCollection.insertOne(sanitizedData);
 
         if (result.acknowledged) {
             res.status(201).json({ message: "Payment processed successfully", transactionId: result.insertedId });

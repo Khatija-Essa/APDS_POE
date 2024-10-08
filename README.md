@@ -79,6 +79,8 @@ The portal allows customers to register and execute international payments, whil
 •	It’s a mandatory field and it should be a valid ISO 3 alphabetic code.
 •	‘It should be a proper SWIFT code, containing no more than 11 and no less than 8 characters.’
 
+![WhatsApp Image 2024-10-08 at 10 33 26_4696f13f](https://github.com/user-attachments/assets/3f1dea6e-fec2-43df-a31a-ccf5de05b5ad)
+
 ---
 
 ## Technologies Used

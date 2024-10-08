@@ -27,6 +27,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Step 4: Run tests
-      - name: Run tests
-        run: npm test  # Replace with your test command if applicable
+      # Step 4: Run backend
+      - name: Run backend
+        run: npm run dev  
+
+      # step 5 Run frontend
+      - name: Run frontend
+        run: npm run start

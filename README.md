@@ -92,7 +92,7 @@ The portal allows customers to register and execute international payments, whil
 
 ### Backend API:
 - **Node.js** with **Express.js** for handling server-side logic and API requests.
-- **MongoDB** or **MySQL** for customer and transaction data storage.
+- **MongoDB** for customer and transaction data storage.
 
 ### Security:
 - **Password Hashing and Salting**: Passwords are secured using **bcrypt** or similar hashing libraries.

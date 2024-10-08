@@ -1,0 +1,33 @@
+name: DevSecOps Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up JDK
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'  # Specify your Java version
+          distribution: 'adopt'  # Optional
+
+      # Step 3: Build the project (replace with your build command)
+      - name: Build with Maven
+        run: mvn clean install
+
+      # Step 4: Run tests
+      - name: Run tests
+        run: mvn test

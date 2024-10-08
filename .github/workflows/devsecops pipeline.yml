@@ -29,24 +29,7 @@ jobs:
           cd backend
           npm install
 
-      # Step 4: Start the backend application
-      - name: Start the backend application
-        run: |
-          cd backend
-          node server.mjs &  # Run in the background
-
-      # Step 5: Install frontend dependencies
-      - name: Install frontend dependencies
-        run: |
-          cd frontend
-          npm install
-
-      # Step 6: Start the frontend application
-      - name: Start the frontend application
-        run: |
-          cd frontend
-          npm start &  # Run in the background
-
+     
       # Step 7: Optionally, you can run tests or other commands
       - name: Run tests
         run: |

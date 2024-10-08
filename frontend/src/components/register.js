@@ -38,8 +38,13 @@ export default function Register() {
                 throw new Error(data.message || `HTTP error! status: ${response.status}`);
             }
 
-            alert("Registration successful!");
-            navigate("/HowWork");
+            if (data.token) {
+                localStorage.setItem("jwt", data.token);
+                localStorage.setItem("username", data.username);
+                navigate("/howWork");
+            } else {
+                throw new Error("Registration successful, but no token received. Please log in.");
+            }
         } catch (error) {
             console.error("Registration error:", error);
             setError(`Registration failed: ${error.message}`);
@@ -118,10 +123,10 @@ export default function Register() {
                     />
                 </div>
                 <button type="submit" className="btn">Register</button>
-                </form>
+            </form>
             <div className="register-link mt-3">
                 <p className="text-center">
-                    Do have an account? <a href="/login" className="register-text">Login here</a>
+                    Already have an account? <a href="/login" className="register-text">Login here</a>
                 </p>
             </div>
         </div>

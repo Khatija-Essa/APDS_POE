@@ -82,9 +82,18 @@ router.post("/signup", async (req, res) => {
         console.log("Signup result:", result);
         
         if (result.acknowledged) {
+            // Generate a token for the new user
+            const token = jwt.sign(
+                { username: username, email: email, accountNumber: accountNumber },
+                "this_secret_should_be_longer_than_it_is",
+                { expiresIn: "1h" }
+            );
+
             res.status(201).json({
                 message: "User created successfully",
-                userId: result.insertedId
+                userId: result.insertedId,
+                token: token,
+                username: username
             });
         } else {
             res.status(500).json({ message: "Failed to create user" });

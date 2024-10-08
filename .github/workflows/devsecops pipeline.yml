@@ -24,9 +24,13 @@ jobs:
           java-version: '17'  # Specify your Java version
           distribution: 'adopt'  # Optional
 
-      # Step 3: Build the project (replace with your build command)
-      - name: Build with Maven
-        run: mvn clean install
+     # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Build the project
+      - name: Build the project
+        run: npm run build
 
       # Step 4: Run tests
       - name: Run tests

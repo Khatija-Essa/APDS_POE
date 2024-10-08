@@ -66,8 +66,7 @@ The portal allows customers to register and execute international payments, whil
 - Which are important statements that are issued to reflect final approval of the credit given to a customer.
 - You will receive a confirmation message after your payment processes are completed.
 -This message includes:
-
-- Your Transaction ID
+-  A successful payment
 - The Amount Paid, specified in any currency selected.
 
 4. **Error Handling**

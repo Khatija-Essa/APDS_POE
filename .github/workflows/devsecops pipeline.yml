@@ -21,17 +21,26 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
-
+          node-version: '18'  # Specify the Node.js version you want to use
 
       # Step 3: Change to the backend directory
       - name: Change to backend directory
         run: cd backend
 
-# Step 4: Install dependencies
+      # Step 4: Install dependencies
       - name: Install dependencies
-        run: npm install
+        run: |
+          cd backend  # Navigate to the backend directory
+          npm install
 
-# Step 5: Start the app
+      # Step 5: Start the application
       - name: Start the application
-        run: npm start
+        run: |
+          cd backend  # Navigate to the backend directory
+          npm start
+
+      # Step 6: Run tests (optional)
+      - name: Run tests
+        run: |
+          cd backend  # Navigate to the backend directory
+          npm test

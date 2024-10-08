@@ -1,6 +1,6 @@
 # README: Customer International Payments Portal
 
-#Demo video :https://youtu.be/QQQBiNAYGkw?feature=shared 
+**Demo video** :https://youtu.be/QQQBiNAYGkw?feature=shared 
 
 ## Overview
 
@@ -36,7 +36,11 @@ The portal allows customers to register and execute international payments, whil
      
 ![IMG-20241008-WA0009](https://github.com/user-attachments/assets/adbf0f88-8764-481e-974e-ad45242cd149)
 
-### PAYMENT USER GUIDE:
+4.**Payment**:
+- Users will there after have the access to do a payment after logging in .
+- 
+![WhatsApp Image 2024-10-08 at 10 33 26_4696f13f](https://github.com/user-attachments/assets/3f1dea6e-fec2-43df-a31a-ccf5de05b5ad)
+
 ## How It Works
 1. **Logging In**
 - Before you can access the payment features, you must be logged into your account
@@ -76,9 +80,7 @@ The portal allows customers to register and execute international payments, whil
 •	‘Account number’ is mandatory and must be an integer of 10 digits long.”
 •	“an acceptable value can be given in the form of the payment amount and that payment amount is supposed to be a positive value.”
 •	It’s a mandatory field and it should be a valid ISO 3 alphabetic code.
-•	‘It should be a proper SWIFT code, containing no more than 11 and no less than 8 characters.’
-
-![WhatsApp Image 2024-10-08 at 10 33 26_4696f13f](https://github.com/user-attachments/assets/3f1dea6e-fec2-43df-a31a-ccf5de05b5ad)
+•	‘It should be a proper SWIFT code, containing no more than 11 and no less than 8 characters.
 
 ---
 

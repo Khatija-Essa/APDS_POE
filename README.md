@@ -1,8 +1,9 @@
 # README: Customer International Payments Portal
 
+
 ## Overview
 
-This project focuses on building a secure **Customer International Payments Portal** for an internal banking system. Our applicatio  is called Money Gold which is a  portal that  will manage sensitive customer data, international payments, and bank transactions with a strong emphasis on security and compliance. The solution includes a **React** or **Angular** frontend and a backend **API** that ensures secure customer interaction and seamless processing of payments through **SWIFT**.
+This project focuses on building a secure **Customer International Payments Portal** for an internal banking system. Our applicatio  is called Money Gold International which is a  portal that  will manage sensitive customer data, international payments, and bank transactions with a strong emphasis on security and compliance. The solution includes a **React** or **Angular** frontend and a backend **API** that ensures secure customer interaction and seamless processing of payments through **SWIFT**.
 
 ### Purpose
 

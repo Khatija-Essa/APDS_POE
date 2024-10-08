@@ -127,4 +127,10 @@ Testing and Deployment
 
 Implement unit tests for both frontend and backend components using testing frameworks such as Jest or Mocha to ensure the reliability and integrity of the system.
 
+# Contact:
+- Thabani Shabalala
+- Nkosinomusa Hadebe
+- Naledi Malunga
+- Sherel Davaraj
+
 

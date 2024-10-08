@@ -21,16 +21,16 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'  # Specify your Node.js version
+          node-version: '18'
 
       # Step 3: Install dependencies
       - name: Install dependencies
         run: npm install
 
-      # Step 4: Run backend
-      - name: Run backend
-        run: npm run dev  
+      # Step 4: Start development server
+      - name: Start development server
+        run: npm run dev
 
-      # step 5 Run frontend
-      - name: Run frontend
-        run: npm run start
+      # Step 5: Run tests
+      - name: Run tests
+        run: npm test  # You currently have a placeholder test script

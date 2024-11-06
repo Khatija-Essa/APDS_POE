@@ -17,17 +17,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Set up JDK
-      - name: Set up JDK
-        uses: actions/setup-java@v3
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          java-version: '17'  # Specify your Java version
-          distribution: 'adopt'  # Optional
+          node-version: '18'
 
-      # Step 3: Build the project (replace with your build command)
-      - name: Build with Maven
-        run: mvn clean install
+      # Step 3: Install backend dependencies
+      - name: Install backend dependencies
+        run: |
+          cd backend
+          npm install
 
-      # Step 4: Run tests
+     
+      # Step 7: Optionally, you can run tests or other commands
       - name: Run tests
-        run: mvn test
+        run: |
+          cd backend
+          npm test  # Adjust as necessary for your backend test command

@@ -10,7 +10,7 @@ function Home() {
   };
 
   const goToAdminLogin = () => {
-    navigate('/admin-login');
+    navigate('/employee/login');  // Corrected route path
   };
 
   return (

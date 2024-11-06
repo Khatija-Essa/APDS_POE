@@ -1,4 +1,3 @@
-import './App.css';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Navbar from "./components/navbar";
@@ -8,8 +7,8 @@ import Login from "./components/login";
 import About from "./components/About"; 
 import HowWork from "./components/HowWork"; 
 import Payment from "./components/payment"; 
-
-
+import EmployeeLogin from './components/employeelogin';  
+import EmployeeAdd from './components/employeeAdd';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
@@ -24,7 +23,8 @@ const App = () => {
           <Route path="/about" element={<About />} /> 
           <Route path="/howWork" element={<HowWork />} /> 
           <Route path="/payment" element={<Payment />} />
-
+          <Route path="/employee/login" element={<EmployeeLogin />} /> 
+          <Route path="/employee/add" element={<EmployeeAdd />} />
         </Routes>
       </div>
     </div>

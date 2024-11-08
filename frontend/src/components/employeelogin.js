@@ -16,7 +16,7 @@ export default function EmployeeLogin() {
         setForm((prev) => ({ ...prev, ...value }));
     }
 
-    async function handleSubmit(e) { // Renamed to match the onSubmit handler in the form
+    async function handleSubmit(e) {
         e.preventDefault();
         setError("");
 
@@ -36,8 +36,12 @@ export default function EmployeeLogin() {
             }
 
             if (data.token) {
+                // Set tokens and user type
                 localStorage.setItem("jwt", data.token);
                 localStorage.setItem("employeeID", data.employeeID);
+                localStorage.setItem("userType", "employee"); // Indicate logged-in type
+
+                // Redirect to PaymentData page
                 navigate("/payment/PaymentData"); 
             } else {
                 throw new Error("Login failed: No token received");

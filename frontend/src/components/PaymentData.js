@@ -7,21 +7,24 @@ export default function PaymentData() {
 
     useEffect(() => {
         const token = localStorage.getItem("jwt");
-
         if (!token) {
             setError("Access denied. Token required.");
             return;
         }
 
-        fetch("https://localhost:3001/payment", {
+        fetch("https://localhost:3001/payment/get", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`,
             },
         })
-            .then((response) => response.json())
+            .then((response) => {
+                if (!response.ok) throw new Error("Failed to fetch payment data");
+                return response.json();
+            })
             .then((data) => {
+                console.log("Fetched transactions:", data);
                 setPayments(data);
             })
             .catch((err) => {
@@ -32,30 +35,40 @@ export default function PaymentData() {
 
     return (
         <div className="payment-data-container">
-            <h3>Employee Payments</h3>
+            <h3>Payment Transactions</h3>
             {error && <div className="alert alert-danger">{error}</div>}
             <table className="table table-striped">
                 <thead>
                     <tr>
-                        <th>Payment ID</th>
-                        <th>Employee ID</th>
+                        <th>Username</th>
+                        <th>Account Number</th>
                         <th>Amount</th>
+                        <th>Amount (USD)</th>
                         <th>Currency</th>
-                        <th>Date</th>
                         <th>SWIFT Code</th>
+                        <th>Provider</th>
+                        <th>Timestamp</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {payments.map((payment) => (
-                        <tr key={payment.id}>
-                            <td>{payment.paymentID}</td>
-                            <td>{payment.employeeID}</td>
-                            <td>{payment.amount}</td>
-                            <td>{payment.currency}</td>
-                            <td>{payment.date}</td>
-                            <td>{payment.swiftCode}</td>
+                    {payments.length > 0 ? (
+                        payments.map((payment) => (
+                            <tr key={payment._id}>
+                                <td>{payment.username}</td>
+                                <td>{payment.accountNumber}</td>
+                                <td>{payment.amount.toFixed(2)}</td>
+                                <td>{payment.amountUSD.toFixed(2)}</td>
+                                <td>{payment.currency}</td>
+                                <td>{payment.swiftCode}</td>
+                                <td>{payment.provider}</td>
+                                <td>{new Date(payment.timestamp).toLocaleString()}</td>
+                            </tr>
+                        ))
+                    ) : (
+                        <tr>
+                            <td colSpan="8" className="text-center">No transactions found.</td>
                         </tr>
-                    ))}
+                    )}
                 </tbody>
             </table>
         </div>

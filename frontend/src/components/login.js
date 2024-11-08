@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import './Login.css'; 
+import './Login.css';
 
 export default function Login() {
     const [form, setForm] = useState({
@@ -39,7 +39,14 @@ export default function Login() {
             if (data.token) {
                 localStorage.setItem("jwt", data.token);
                 localStorage.setItem("username", data.username);
-                navigate("/howWork"); 
+                localStorage.setItem("role", data.role); // Assuming role is returned from the backend
+                
+                // Check the role and navigate accordingly
+                if (data.role === "employee") {
+                    navigate("/employeeDashboard"); // Redirect to employee dashboard
+                } else {
+                    navigate("/userDashboard"); // Redirect to user dashboard
+                }
             } else {
                 throw new Error("Login failed: No token received");
             }
@@ -98,7 +105,7 @@ export default function Login() {
                         required
                     />
                 </div>
-                <button type="submit" class="btn">Login</button>
+                <button type="submit" className="btn">Login</button>
             </form>
             <div className="register-link mt-3">
                 <p className="text-center">

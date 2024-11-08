@@ -2,6 +2,9 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
+  // Retrieve user type from localStorage
+  const userType = localStorage.getItem("userType"); // "employee" or "user"
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
@@ -26,21 +29,39 @@ export default function Navbar() {
                 Home
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/about">
-                About
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/howWork">
-                How It Works
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/payment">
-                Payment
-              </NavLink>
-            </li>
+
+            {userType === "employee" ? (
+              <>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/employeeData">
+                    Employee Data
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/employeeAdd">
+                    Add Employee
+                  </NavLink>
+                </li>
+              </>
+            ) : (
+              <>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/about">
+                    About
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/howWork">
+                    How It Works
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/payment">
+                    Payment
+                  </NavLink>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>

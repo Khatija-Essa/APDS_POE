@@ -13,6 +13,9 @@ import PaymentData from './components/PaymentData';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
+  // Assume user type set on login, either "user" or "employee"
+  // For example: localStorage.setItem("userType", "employee");
+
   return (
     <div className="App">
       <Navbar />

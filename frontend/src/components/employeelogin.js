@@ -38,7 +38,7 @@ export default function EmployeeLogin() {
             if (data.token) {
                 localStorage.setItem("jwt", data.token);
                 localStorage.setItem("employeeID", data.employeeID);
-                navigate("/employee/add"); 
+                navigate("/payment/PaymentData"); 
             } else {
                 throw new Error("Login failed: No token received");
             }

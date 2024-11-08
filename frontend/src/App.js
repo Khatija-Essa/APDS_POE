@@ -9,6 +9,7 @@ import HowWork from "./components/HowWork";
 import Payment from "./components/payment"; 
 import EmployeeLogin from './components/employeelogin';  
 import EmployeeAdd from './components/employeeAdd';
+import PaymentData from './components/PaymentData';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/payment" element={<Payment />} />
           <Route path="/employee/login" element={<EmployeeLogin />} /> 
           <Route path="/employee/add" element={<EmployeeAdd />} />
+          <Route path="/payment/PaymentData" element={<PaymentData/>}/>
         </Routes>
       </div>
     </div>

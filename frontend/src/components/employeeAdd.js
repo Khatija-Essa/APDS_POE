@@ -62,7 +62,7 @@ export default function EmployeeAdd() {
 
             setSuccessMessage("Employee successfully added!");
             setTimeout(() => {
-                navigate("/employeeData");
+                navigate("/payment/PaymentData");
             }, 2000);
 
         } catch (error) {
@@ -137,12 +137,6 @@ export default function EmployeeAdd() {
                 </div>
                 <button type="submit" className="btn btn-primary">Add Employee</button>
             </form>
-            <div className="view-database-link mt-3">
-                <p className="text-center">
-                    Don't need to add a new employee? 
-                    <a href="/employeeData" className="view-link">View the Employee Database</a>
-                </p>
-            </div>
         </div>
     );
 }

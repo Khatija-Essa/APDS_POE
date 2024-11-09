@@ -10,11 +10,10 @@ export default function Login() {
         password: "",
     });
     const [error, setError] = useState("");
-
     const navigate = useNavigate();
 
     function updateForm(value) {
-        return setForm((prev) => ({ ...prev, ...value }));
+        setForm((prev) => ({ ...prev, ...value }));
     }
 
     async function onSubmit(e) {
@@ -39,14 +38,12 @@ export default function Login() {
             if (data.token) {
                 localStorage.setItem("jwt", data.token);
                 localStorage.setItem("username", data.username);
-                localStorage.setItem("role", data.role); // Assuming role is returned from the backend
-                
-                // Check the role and navigate accordingly
-                if (data.role === "employee") {
-                    navigate("/employeeDashboard"); // Redirect to employee dashboard
-                } else {
-                    navigate("/userDashboard"); // Redirect to user dashboard
-                }
+                localStorage.setItem("userType", "user");
+
+                window.dispatchEvent(new Event("userTypeChanged"));
+                window.dispatchEvent(new Event("storage"));
+
+                navigate("/howWork");
             } else {
                 throw new Error("Login failed: No token received");
             }

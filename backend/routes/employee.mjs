@@ -4,26 +4,6 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
 const router = express.Router();
-const DEFAULT_EMPLOYEE = {
-    fullName: "John Doe",
-    employeeID: "EMP001",
-    email: "john.doe@example.com",
-    role: "admin",
-    password: "DefaultEmployeePass123!"
-};
-
-// Pre-register an employee in MongoDB
-const preRegisterEmployee = async (employee) => {
-    const collection = await db.collection("employees");
-
-    const existingEmployee = await collection.findOne({ employeeID: employee.employeeID });
-    if (!existingEmployee) {
-        await collection.insertOne(employee);
-        console.log(`Employee ${employee.fullName} pre-registered successfully.`);
-    } else {
-        console.log(`Employee ${employee.fullName} already exists.`);
-    }
-};
 
 const authenticateToken = async (req, res, next) => {
     try {
@@ -58,7 +38,7 @@ router.post("/login", async (req, res) => {
     try {
         const collection = await db.collection("employees");
 
-        const employee = await collection.findOne({ employeeID: employeeID, email: email });
+        const employee = await collection.findOne({ employeeID, email });
 
         console.log("Database query result:", employee ? "Employee found" : "Employee not found");
 
@@ -66,15 +46,9 @@ router.post("/login", async (req, res) => {
             return res.status(401).json({ message: "Invalid credentials" });
         }
 
-        if (employeeID === DEFAULT_EMPLOYEE.employeeID) {
-            if (password !== employee.password) {
-                return res.status(401).json({ message: "Invalid credentials" });
-            }
-        } else {
-            const passwordMatch = await bcrypt.compare(password, employee.password);
-            if (!passwordMatch) {
-                return res.status(401).json({ message: "Invalid credentials" });
-            }
+        const passwordMatch = await bcrypt.compare(password, employee.password);
+        if (!passwordMatch) {
+            return res.status(401).json({ message: "Invalid credentials" });
         }
 
         const token = jwt.sign(
@@ -114,7 +88,7 @@ router.post("/add-employee", authenticateToken, async (req, res) => {
     try {
         const collection = await db.collection("employees");
 
-        const existingEmployee = await collection.findOne({ employeeID: employeeID });
+        const existingEmployee = await collection.findOne({ employeeID });
         if (existingEmployee) {
             return res.status(409).json({ message: "Employee with this ID already exists." });
         }

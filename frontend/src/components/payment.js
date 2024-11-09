@@ -6,10 +6,9 @@ const exchangeRates = {
     EUR: 0.84,
     GBP: 0.72,
     JPY: 110.23,
-    // Add more currencies as needed
 };
 
-function Payment() {
+const Payment = () => {
     const [payment, setPayment] = useState({
         username: '',
         accountNumber: '',
@@ -20,15 +19,12 @@ function Payment() {
 
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const fetchUserDetails = async () => {
-            setLoading(true);
             const token = localStorage.getItem("jwt");
-
             if (!token) {
-                setError("No authentication token found. Please log in again.");
                 setLoading(false);
                 return;
             }
@@ -50,12 +46,9 @@ function Payment() {
                         username: result.username,
                         accountNumber: result.accountNumber
                     }));
-                } else {
-                    setError(`Failed to fetch user details: ${result.message}`);
                 }
             } catch (error) {
                 console.error("Error fetching user details:", error);
-                setError("There was an error connecting to the server. Please check your internet connection and try again.");
             } finally {
                 setLoading(false);
             }
@@ -82,7 +75,6 @@ function Payment() {
 
         try {
             const token = localStorage.getItem("jwt");
-
             const response = await fetch("https://localhost:3001/payment/make-payment", {
                 method: "POST",
                 headers: {
@@ -102,7 +94,6 @@ function Payment() {
 
             if (response.ok) {
                 setSuccess(`Payment processed successfully. Amount in USD: $${result.amountUSD}`);
-                // Clear the form after successful submission
                 setPayment(prev => ({
                     ...prev,
                     amount: '',
@@ -114,7 +105,7 @@ function Payment() {
             }
         } catch (error) {
             console.error("Payment submission error:", error);
-            setError("There was an error processing your payment. Please check your internet connection and try again.");
+            setError("Payment processing error. Please try again.");
         }
     }
 
@@ -124,11 +115,13 @@ function Payment() {
 
     return (
         <div className="payment-container">
-            <h2 className="payment-title">Make a Payment</h2>
-            {error && <div className="error-message">{error}</div>}
-            {success && <div className="success-message">{success}</div>}
-            <form onSubmit={submitPayment} className="payment-form">
-                <div className="form-row">
+            <div className="payment-form-container">
+                <h2 className="payment-title">Make a Payment</h2>
+                
+                {error && <div className="error-message">{error}</div>}
+                {success && <div className="success-message">{success}</div>}
+                
+                <form onSubmit={submitPayment} className="payment-form">
                     <div className="form-group">
                         <label htmlFor="username">Username</label>
                         <input
@@ -140,6 +133,7 @@ function Payment() {
                             placeholder="Enter username"
                         />
                     </div>
+
                     <div className="form-group">
                         <label htmlFor="accountNumber">Account Number</label>
                         <input
@@ -151,8 +145,7 @@ function Payment() {
                             placeholder="Enter account number"
                         />
                     </div>
-                </div>
-                <div className="form-row">
+
                     <div className="form-group">
                         <label htmlFor="amount">Amount</label>
                         <input
@@ -164,6 +157,7 @@ function Payment() {
                             placeholder="Enter amount"
                         />
                     </div>
+
                     <div className="form-group">
                         <label htmlFor="currency">Currency</label>
                         <select
@@ -173,26 +167,32 @@ function Payment() {
                             required
                         >
                             {Object.keys(exchangeRates).map(currency => (
-                                <option key={currency} value={currency}>{currency}</option>
+                                <option key={currency} value={currency}>
+                                    {currency}
+                                </option>
                             ))}
                         </select>
                     </div>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="swiftCode">SWIFT Code</label>
-                    <input
-                        type="text"
-                        id="swiftCode"
-                        value={payment.swiftCode}
-                        onChange={(e) => updatePayment({ swiftCode: e.target.value })}
-                        required
-                        placeholder="Enter SWIFT code"
-                    />
-                </div>
-                <button type="submit" className="submit-button">Pay Now</button>
-            </form>
+
+                    <div className="form-group">
+                        <label htmlFor="swiftCode">SWIFT Code</label>
+                        <input
+                            type="text"
+                            id="swiftCode"
+                            value={payment.swiftCode}
+                            onChange={(e) => updatePayment({ swiftCode: e.target.value })}
+                            required
+                            placeholder="Enter SWIFT code"
+                        />
+                    </div>
+
+                    <button type="submit" className="submit-button">
+                        Pay Now
+                    </button>
+                </form>
+            </div>
         </div>
     );
-}
+};
 
 export default Payment;

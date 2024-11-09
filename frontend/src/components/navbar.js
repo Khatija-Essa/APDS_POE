@@ -1,12 +1,94 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import './Navbar.css';  // Updated import path
 
 export default function Navbar() {
-  // Retrieve user type from localStorage
-  const userType = localStorage.getItem("userType"); // "employee" or "user"
+  const [userType, setUserType] = useState(localStorage.getItem("userType"));
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleUserTypeChange = () => {
+      setUserType(localStorage.getItem("userType"));
+    };
+
+    window.addEventListener("userTypeChanged", handleUserTypeChange);
+    window.addEventListener("storage", handleUserTypeChange);
+
+    return () => {
+      window.removeEventListener("userTypeChanged", handleUserTypeChange);
+      window.removeEventListener("storage", handleUserTypeChange);
+    };
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.clear();
+    setUserType(null);
+    window.dispatchEvent(new Event("userTypeChanged"));
+    navigate("/");
+  };
+
+  const renderUserNav = () => (
+    <ul className="navbar-nav me-auto">
+      <li className="nav-item">
+        <NavLink className={({isActive}) => isActive ? "nav-link active-nav-link" : "nav-link"} to="/">
+          Home
+        </NavLink>
+      </li>
+      <li className="nav-item">
+        <NavLink className={({isActive}) => isActive ? "nav-link active-nav-link" : "nav-link"} to="/about">
+          About
+        </NavLink>
+      </li>
+      <li className="nav-item">
+        <NavLink className={({isActive}) => isActive ? "nav-link active-nav-link" : "nav-link"} to="/howWork">
+          How It Works
+        </NavLink>
+      </li>
+      <li className="nav-item">
+        <NavLink className={({isActive}) => isActive ? "nav-link active-nav-link" : "nav-link"} to="/payment">
+          Payment
+        </NavLink>
+      </li>
+    </ul>
+  );
+
+  const renderEmployeeNav = () => (
+    <ul className="navbar-nav me-auto">
+      <li className="nav-item">
+        <NavLink className={({isActive}) => isActive ? "nav-link active-nav-link" : "nav-link"} to="/payment/PaymentData">
+          Employee Data
+        </NavLink>
+      </li>
+      <li className="nav-item">
+        <NavLink className={({isActive}) => isActive ? "nav-link active-nav-link" : "nav-link"} to="/employee/add">
+          Add Employee
+        </NavLink>
+      </li>
+    </ul>
+  );
+
+  const renderDefaultNav = () => (
+    <ul className="navbar-nav me-auto">
+      <li className="nav-item">
+        <NavLink className={({isActive}) => isActive ? "nav-link active-nav-link" : "nav-link"} to="/">
+          Home
+        </NavLink>
+      </li>
+      <li className="nav-item">
+        <NavLink className={({isActive}) => isActive ? "nav-link active-nav-link" : "nav-link"} to="/about">
+          About
+        </NavLink>
+      </li>
+      <li className="nav-item">
+        <NavLink className={({isActive}) => isActive ? "nav-link active-nav-link" : "nav-link"} to="/howWork">
+          How It Works
+        </NavLink>
+      </li>
+    </ul>
+  );
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-light">
       <div className="container">
         <NavLink className="navbar-brand" to="/">
           Money Gold International
@@ -23,46 +105,15 @@ export default function Navbar() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/">
-                Home
-              </NavLink>
-            </li>
-
-            {userType === "employee" ? (
-              <>
-                <li className="nav-item">
-                  <NavLink className="nav-link" to="/employeeData">
-                    Employee Data
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink className="nav-link" to="/employeeAdd">
-                    Add Employee
-                  </NavLink>
-                </li>
-              </>
-            ) : (
-              <>
-                <li className="nav-item">
-                  <NavLink className="nav-link" to="/about">
-                    About
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink className="nav-link" to="/howWork">
-                    How It Works
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink className="nav-link" to="/payment">
-                    Payment
-                  </NavLink>
-                </li>
-              </>
-            )}
-          </ul>
+          {userType === "user" && renderUserNav()}
+          {userType === "employee" && renderEmployeeNav()}
+          {!userType && renderDefaultNav()}
+          
+          {(userType === "user" || userType === "employee") && (
+            <button onClick={handleLogout} className="nav-logout-btn">
+              Logout
+            </button>
+          )}
         </div>
       </div>
     </nav>

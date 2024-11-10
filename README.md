@@ -22,13 +22,15 @@ The portal allows customers to register and execute international payments, whil
      
    ![IMG-20241008-WA0008](https://github.com/user-attachments/assets/642c5899-3d51-41d8-8962-66ddf1193923)
 
+2. **About page**:
+   - This is were users will be able to read and get to know what the application is about and the process of the application.
+     
 
 2. **Registration**:
    - Customers must provide their full name, ID number, account number, and password to register.
    - Passwords are securely hashed and salted to safeguard against unauthorized access.
      
      ![IMG-20241008-WA0010](https://github.com/user-attachments/assets/fbe11206-b546-459d-be31-3afe64302f1a)
-
 
 3. **Login**:
    - Customers log in using their username, account number, and password.
@@ -41,6 +43,29 @@ The portal allows customers to register and execute international payments, whil
 - 
 ![WhatsApp Image 2024-10-08 at 10 33 26_4696f13f](https://github.com/user-attachments/assets/3f1dea6e-fec2-43df-a31a-ccf5de05b5ad)
 
+5. **Payment progress**
+   - Once payment is made the user will be prompt to the payment progress page ,which will show users the details of the paid user's username ,provide,timestamp and status .
+  
+6. **Employee login**
+   - Employee log in using their username, account number, and password.
+   - No self-registration process: Users must be manually created and cannot register themselves through the portal.
+   - **RegEx**-based input validation ensures that only valid data is accepted.
+   - Password hashing and salting: Passwords must be securely hashed and salted using an industry-standard method to protect user credentials.
+
+ 7. **Employee data page**
+        -
+        -
+ 8.**Payment verified page**
+
+9.**Add Employee page**
+
+
+
+
+    
+        
+  
+     
 ## How It Works
 1. **Logging In**
 - Before you can access the payment features, you must be logged into your account

@@ -11,6 +11,8 @@ import Payment from "./components/payment";
 import EmployeeLogin from './components/employeelogin';
 import EmployeeAdd from './components/employeeAdd';
 import PaymentData from './components/PaymentData';
+import Verified from './components/verified';
+import Progress from './components/Progress';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Protected Route component for user routes
@@ -59,6 +61,11 @@ const App = () => {
               <Payment />
             </UserRoute>
           } />
+          <Route path="/payment/progress" element={
+            <UserRoute>
+              <Progress />
+            </UserRoute>
+          } />
 
           {/* Protected employee routes */}
           <Route path="/employee/add" element={
@@ -71,6 +78,9 @@ const App = () => {
               <PaymentData />
             </EmployeeRoute>
           } />
+
+          {/* Verified route */}
+          <Route path="/verified" element={<Verified />} />
         </Routes>
       </div>
     </div>

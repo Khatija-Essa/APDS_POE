@@ -18,8 +18,8 @@ function Payment() {
         swiftCode: '',
     });
 
-    const [error, setError] = useState("");
-    const [success, setSuccess] = useState("");
+    const [error, setError] = useState("");  // Error message state
+    const [success, setSuccess] = useState("");  // Success message state
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -42,20 +42,20 @@ function Payment() {
                     },
                 });
 
-                const result = await response.json();
-
                 if (response.ok) {
+                    const result = await response.json();
                     setPayment(prev => ({ 
                         ...prev, 
                         username: result.username,
                         accountNumber: result.accountNumber
                     }));
                 } else {
-                    setError(`Failed to fetch user details: ${result.message}`);
+                    // Handle any other errors without showing a red error box
+                    console.warn(`Failed to fetch user details. Status: ${response.status}`);
                 }
             } catch (error) {
                 console.error("Error fetching user details:", error);
-                setError("There was an error connecting to the server. Please check your internet connection and try again.");
+                setError("There was an error connecting to the server. Please try again later.");
             } finally {
                 setLoading(false);
             }
@@ -65,7 +65,7 @@ function Payment() {
     }, []);
 
     function updatePayment(value) {
-        return setPayment((prev) => ({ ...prev, ...value }));
+        setPayment((prev) => ({ ...prev, ...value }));
     }
 
     async function submitPayment(e) {
@@ -102,7 +102,6 @@ function Payment() {
 
             if (response.ok) {
                 setSuccess(`Payment processed successfully. Amount in USD: $${result.amountUSD}`);
-                // Clear the form after successful submission
                 setPayment(prev => ({
                     ...prev,
                     amount: '',
@@ -125,8 +124,13 @@ function Payment() {
     return (
         <div className="payment-container">
             <h2 className="payment-title">Make a Payment</h2>
+            
+            {/* Only show the error message if it's present */}
             {error && <div className="error-message">{error}</div>}
+
+            {/* Show success message if payment is successful */}
             {success && <div className="success-message">{success}</div>}
+            
             <form onSubmit={submitPayment} className="payment-form">
                 <div className="form-row">
                     <div className="form-group">

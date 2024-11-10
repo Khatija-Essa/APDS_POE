@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './PaymentData.css';
 
 export default function PaymentData() {
     const [payments, setPayments] = useState([]);
     const [error, setError] = useState("");
-    const [message, setMessage] = useState("");
+    const navigate = useNavigate();
 
+    // Fetch payments data on mount and every 10 seconds
     useEffect(() => {
         const fetchPayments = async () => {
             const token = localStorage.getItem("jwt");
@@ -34,43 +36,47 @@ export default function PaymentData() {
         };
 
         fetchPayments();
+
+        // Set up polling for real-time updates every 10 seconds
+        const intervalId = setInterval(fetchPayments, 10000);
+
+        return () => clearInterval(intervalId); // Clean up on component unmount
     }, []);
 
-    // Verify payment function
-    const verifyPayment = async (paymentId) => {
-        const token = localStorage.getItem("jwt");
-
+    // Handle payment approval
+    const handleApproveClick = async (paymentId) => {
         try {
-            const response = await fetch(`https://localhost:3001/payment/verify/${paymentId}`, {
-                method: "POST",
+            const token = localStorage.getItem("jwt");
+            const response = await fetch(`https://localhost:3001/payment/approve-payment/${paymentId}`, {
+                method: "PUT",  // Use PUT to update the payment status
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${token}`,
                 },
             });
 
-            if (!response.ok) throw new Error("Failed to verify payment");
-
-            setPayments((prev) =>
-                prev.map((payment) =>
-                    payment._id === paymentId ? { ...payment, verified: true } : payment
-                )
-            );
-            setMessage("Payment successfully verified.");
-        } catch (err) {
-            setMessage("Error verifying payment.");
-            console.error("Error verifying payment:", err);
+            if (response.ok) {
+                // Update payment status in the state to "approved"
+                setPayments(prevPayments =>
+                    prevPayments.map(payment =>
+                        payment._id === paymentId ? { ...payment, status: "approved" } : payment
+                    )
+                );
+                navigate("/verified");
+            } else {
+                const result = await response.json();
+                setError(result.message || "Failed to approve payment.");
+            }
+        } catch (error) {
+            setError("Failed to approve payment.");
+            console.error("Approval error:", error);
         }
     };
-
-   
-    
 
     return (
         <div className="payment-data-container">
             <h3>Payment Transactions</h3>
             {error && <div className="alert alert-danger">{error}</div>}
-            {message && <div className="alert alert-info">{message}</div>}
             <table className="table table-striped">
                 <thead>
                     <tr>
@@ -98,23 +104,21 @@ export default function PaymentData() {
                                 <td>{payment.swiftCode}</td>
                                 <td>{payment.provider}</td>
                                 <td>{new Date(payment.timestamp).toLocaleString()}</td>
-                                <td>{payment.verified ? "Verified" : "Pending"}</td>
+                                <td>{payment.status}</td>
                                 <td>
-                                    <button
-                                        onClick={() => verifyPayment(payment._id)}
-                                        disabled={payment.verified}
-                                        className="btn btn-success"
-                                    >
-                                        Verify
-                                    </button>
-                                    
+                                    {payment.status === "in progress" && (
+                                        <button
+                                            onClick={() => handleApproveClick(payment._id)}
+                                            className="btn btn-success"
+                                        >
+                                            Approve Payment
+                                        </button>
+                                    )}
                                 </td>
                             </tr>
                         ))
                     ) : (
-                        <tr>
-                            <td colSpan="10" className="text-center">No transactions found.</td>
-                        </tr>
+                        <tr><td colSpan="10">No payments found</td></tr>
                     )}
                 </tbody>
             </table>

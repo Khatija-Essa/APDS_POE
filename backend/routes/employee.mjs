@@ -1,3 +1,5 @@
+// paymentRoutes.mjs
+
 import express from "express";
 import db from "../db/conn.mjs";
 import jwt from "jsonwebtoken";
@@ -5,6 +7,7 @@ import bcrypt from "bcrypt";
 
 const router = express.Router();
 
+// Middleware to authenticate token
 const authenticateToken = async (req, res, next) => {
     try {
         const authHeader = req.headers['authorization'];
@@ -29,7 +32,6 @@ const authenticateToken = async (req, res, next) => {
 // Employee Login Route
 router.post("/login", async (req, res) => {
     const { employeeID, email, password } = req.body;
-    console.log("Login attempt with:", { employeeID, email });
 
     if (!employeeID || !email || !password) {
         return res.status(400).json({ message: "All fields are required" });
@@ -37,10 +39,7 @@ router.post("/login", async (req, res) => {
 
     try {
         const collection = await db.collection("employees");
-
         const employee = await collection.findOne({ employeeID, email });
-
-        console.log("Database query result:", employee ? "Employee found" : "Employee not found");
 
         if (!employee) {
             return res.status(401).json({ message: "Invalid credentials" });
@@ -65,7 +64,6 @@ router.post("/login", async (req, res) => {
             fullName: employee.fullName,
             role: employee.role
         });
-        console.log("Login successful for employee:", employee.employeeID);
 
     } catch (error) {
         console.error("Login error:", error);
@@ -87,7 +85,6 @@ router.post("/add-employee", authenticateToken, async (req, res) => {
 
     try {
         const collection = await db.collection("employees");
-
         const existingEmployee = await collection.findOne({ employeeID });
         if (existingEmployee) {
             return res.status(409).json({ message: "Employee with this ID already exists." });
@@ -110,6 +107,30 @@ router.post("/add-employee", authenticateToken, async (req, res) => {
     } catch (error) {
         console.error("Error adding employee:", error);
         res.status(500).json({ message: "Failed to add employee", error: error.message });
+    }
+});
+
+// Verify Payment Route
+router.post("/payment/verify/:paymentId", authenticateToken, async (req, res) => {
+    const { paymentId } = req.params;
+
+    try {
+        const collection = await db.collection("payments");
+
+        // Update the payment status to "approved" where status was "in progress"
+        const result = await collection.updateOne(
+            { _id: paymentId, status: "in progress" },
+            { $set: { status: "approved", verified: true } }
+        );
+
+        if (result.modifiedCount === 0) {
+            return res.status(404).json({ message: "Payment not found or already approved" });
+        }
+
+        res.status(200).json({ message: "Payment status updated to approved" });
+    } catch (error) {
+        console.error("Error updating payment status:", error);
+        res.status(500).json({ message: "Failed to update payment status", error: error.message });
     }
 });
 

@@ -1,8 +1,9 @@
 import express from "express";
-import db from "../db/conn.mjs";
+import db from "../db/conn.mjs"; // Ensure your database connection is correct
 import jwt from "jsonwebtoken";
 import ExpressBrute from "express-brute";
 import checkauth from "../check-auth.mjs";
+import { ObjectId } from "mongodb";
 
 const router = express.Router();
 const store = new ExpressBrute.MemoryStore();
@@ -26,16 +27,35 @@ const validatePaymentInput = (input) => {
     return null;
 };
 
-// Endpoint to get user details
-router.get("/details/:id", /*checkauth,*/ async (req, res) => {
+// Endpoint to get user details for the frontend
+router.get("/payment/details", checkauth, async (req, res) => {
     try {
-        const usersCollection = await db.collection("client_details");
-        const user = await usersCollection.findOne({ username: req.user.username });
-        if (!user) return res.status(404).json({ message: "User not found" });
+        const username = req.user.username; // Assuming user info is in the token
+        const usersCollection = db.collection("client_details");
+        const user = await usersCollection.findOne({ username });
 
-        res.status(200).json({ username: user.username, accountNumber: user.accountNumber });
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        res.status(200).json({
+            username: user.username,
+            accountNumber: user.accountNumber, // Assuming accountNumber exists in user document
+        });
     } catch (error) {
         console.error("Error fetching user details:", error);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+});
+
+// Endpoint to get all payment records
+router.get("/get", checkauth, async (req, res) => {
+    try {
+        const transactionsCollection = await db.collection("transactions");
+        const results = await transactionsCollection.find({}).toArray();
+        res.status(200).send(results);
+    } catch (error) {
+        console.error("Error fetching transaction records:", error);
         res.status(500).json({ message: "Internal Server Error" });
     }
 });
@@ -57,6 +77,7 @@ router.post("/make-payment", bruteforce.prevent, checkauth, async (req, res) => 
             swiftCode: swiftCode.trim().toUpperCase(),
             provider: "SWIFT",
             timestamp: new Date(),
+            status: "in progress", // Add status to indicate payment is in progress
         };
 
         const transactionsCollection = db.collection("transactions");
@@ -69,7 +90,12 @@ router.post("/make-payment", bruteforce.prevent, checkauth, async (req, res) => 
                 { $push: { transactionHistory: result.insertedId } }
             );
 
-            res.status(201).json({ message: "Payment processed successfully", transactionId: result.insertedId, amountUSD: amountUSD.toFixed(2) });
+            res.status(201).json({
+                message: "Payment processed successfully",
+                transactionId: result.insertedId,
+                amountUSD: amountUSD.toFixed(2),
+                status: sanitizedData.status, // Include initial payment status in the response
+            });
         } else {
             res.status(500).json({ message: "Failed to process payment" });
         }
@@ -79,30 +105,27 @@ router.post("/make-payment", bruteforce.prevent, checkauth, async (req, res) => 
     }
 });
 
-// Endpoint to fetch transaction history
-router.get("/transaction-history", async (req, res) => {
+// Endpoint to approve payment and update status
+router.put("/approve-payment/:transactionId", checkauth, async (req, res) => {
     try {
-        const usersCollection = db.collection("client_details");
+        const { transactionId } = req.params;
         const transactionsCollection = db.collection("transactions");
 
-        const user = await usersCollection.findOne({ username: req.user.username });
-        if (!user) return res.status(404).json({ message: "User not found" });
+        // Find and update the transaction status to "approved"
+        const updateResult = await transactionsCollection.updateOne(
+            { _id: new ObjectId(transactionId), status: "in progress" }, // Ensure we only update "in progress" payments
+            { $set: { status: "approved" } }
+        );
 
-        if (!user.transactionHistory || user.transactionHistory.length === 0) return res.status(404).json({ message: "No transactions found" });
-
-        const transactions = await transactionsCollection.find({ _id: { $in: user.transactionHistory } }).toArray();
-        res.status(200).json(transactions);
+        if (updateResult.modifiedCount > 0) {
+            res.status(200).json({ message: "Payment status updated to 'approved'" });
+        } else {
+            res.status(404).json({ message: "Transaction not found or already approved" });
+        }
     } catch (error) {
-        console.error("Error fetching transaction history:", error);
+        console.error("Error updating payment status:", error);
         res.status(500).json({ message: "Internal Server Error" });
     }
 });
-
-// Get all the records.
-router.get("/get",checkauth, async (req, res) => {
-    let collection = await db.collection("transactions");
-    let results = await collection.find({}).toArray();
-    res.send(results).status(200);
-  });
 
 export default router;

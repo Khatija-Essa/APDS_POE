@@ -67,15 +67,13 @@ The portal allows customers to register and execute international payments, whil
 
 ![image](https://github.com/user-attachments/assets/1ead4733-e3cb-4c89-8a35-64d3168cb896)
 
-
-
  7. **Employee data page**
-        - Wmployees can see the users username ,account number ,amount (usd),the currency ,the swift code ,provider ,timestamp,status and an action button to approve payment.
-        -Employees will approve payment of details are correct and they will be redircted to the verfication page .In this time the status will go from progress to approved .
+        -Allows employees to view customer payment details and approve payments after verification.
+        -Payment status changes to "Approved" upon successful verification.
 ![image](https://github.com/user-attachments/assets/cbb87fdf-612b-4ac4-962d-232411e3a559)
 
  8.**Payment verified page**
- -The payment verfication page will have the important sent to swift and will verified that the payment has been verified .
+ -Displays a verification page confirming that payment data has been securely sent to SWIFT for processing.
 
 ![image](https://github.com/user-attachments/assets/95f749b4-5882-42b6-b479-30e706a02f52)
 
@@ -88,48 +86,7 @@ The portal allows customers to register and execute international payments, whil
 
   
      
-## How It Works
-1. **Logging In**
-- Before you can access the payment features, you must be logged into your account
-- Already registered? 
-- You only need to sign in with your user name and password.
-- New user?
-- In order to continue, please, sign up for an account.
-- After that, you will be able to perform payments after logging in to the application.
 
-2. **Payment Process**
-- Navigate to the Payment Page
-- Once logged in click on the Payment tab in the application.
-
-## Enter Payment Details
-- To complete a payment, provide the following details:
-- Username: Your registered username.
-- Account Number: Your special ten digits account number.
-- Amount: The quantity desired to be paid (must be greater than zero).
-- Currency: Type in the 3-letter world ISO code (USD, EUR, GBP, etc.).
-- SWIFT Code: The SWIFT code of your bank – an 8-to-11-digit code.
-
-## Submit Payment
-- After duplicating all the information needed fields appear hit the blue button named Submit Payment.
-- It will then check your details and make payment on the application that you provided identifies.
-
-3. **Confirmation** 
-- Which are important statements that are issued to reflect final approval of the credit given to a customer.
-- You will receive a confirmation message after your payment processes are completed.
--This message includes:
--  A successful payment
-- The Amount Paid, specified in any currency selected.
-
-4. **Error Handling**
-- If your payment failed to be processed you will receive a message indicating the kind of error that has occurred. 
-- Common error messages may include:
-- Earlier, the username attribute was mandatory, as well as the fact that it had to be at least 3 characters long.
-•	‘Account number’ is mandatory and must be an integer of 10 digits long.”
-•	“an acceptable value can be given in the form of the payment amount and that payment amount is supposed to be a positive value.”
-•	It’s a mandatory field and it should be a valid ISO 3 alphabetic code.
-•	‘It should be a proper SWIFT code, containing no more than 11 and no less than 8 characters.
-
----
 
 ## Technologies Used
 
@@ -220,6 +177,9 @@ Testing and Deployment
 1. Unit Testing:
 
 Implement unit tests for both frontend and backend components using testing frameworks such as Jest or Mocha to ensure the reliability and integrity of the system.
+
+
+Thank you for choosing Money Gold International! This portal aims to provide a secure, compliant, and user-friendly platform for international transactions
 
 
 

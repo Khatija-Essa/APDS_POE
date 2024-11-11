@@ -4,7 +4,7 @@
 
 ## Overview
 
-This project focuses on building a secure **Customer International Payments Portal** for an internal banking system. Our applicatio  is called Money Gold International which is a  portal that  will manage sensitive customer data, international payments, and bank transactions with a strong emphasis on security and compliance. The solution includes a **React** or **Angular** frontend and a backend **API** that ensures secure customer interaction and seamless processing of payments through **SWIFT**.
+This project focuses on building a secure **Customer International Payments Portal** for an internal banking system. Our application  is called Money Gold International which is a  portal that  will manage sensitive customer data, international payments, and bank transactions with a strong emphasis on security and compliance. The solution includes a **React** or **Angular** frontend and a backend **API** that ensures secure customer interaction and seamless processing of payments through **SWIFT**.
 
 ### Purpose
 
@@ -20,50 +20,72 @@ The portal allows customers to register and execute international payments, whil
    - The first interface is a homepage and it explains what money gold is about.
    - The users has the options to register if they are not a user or to sign in to the application .
      
-   ![IMG-20241008-WA0008](https://github.com/user-attachments/assets/642c5899-3d51-41d8-8962-66ddf1193923)
+![image](https://github.com/user-attachments/assets/90447503-d820-4539-9acc-5198e77fc295)
+
 
 2. **About page**:
    - This is were users will be able to read and get to know what the application is about and the process of the application.
+
+  ![image](https://github.com/user-attachments/assets/a9bff9d1-22f3-4e64-85b2-1a0a662b5397)
      
 
 2. **Registration**:
    - Customers must provide their full name, ID number, account number, and password to register.
    - Passwords are securely hashed and salted to safeguard against unauthorized access.
      
-     ![IMG-20241008-WA0010](https://github.com/user-attachments/assets/fbe11206-b546-459d-be31-3afe64302f1a)
+ ![image](https://github.com/user-attachments/assets/3f0ecffe-637f-48e6-a7bc-efbf0ab32a98)
+ 
 
 3. **Login**:
    - Customers log in using their username, account number, and password.
    - **RegEx**-based input validation ensures that only valid data is accepted.
-     
-![IMG-20241008-WA0009](https://github.com/user-attachments/assets/adbf0f88-8764-481e-974e-ad45242cd149)
+     ![image](https://github.com/user-attachments/assets/e0c399ff-f0d6-4899-826a-378a56557d9c)
+
+
 
 4.**Payment**:
 - Users will there after have the access to do a payment after logging in .
-- 
-![WhatsApp Image 2024-10-08 at 10 33 26_4696f13f](https://github.com/user-attachments/assets/3f1dea6e-fec2-43df-a31a-ccf5de05b5ad)
+![image](https://github.com/user-attachments/assets/8b2241e5-d09a-40d7-9423-de1ac3bbf16b)
+
 
 5. **Payment progress**
-   - Once payment is made the user will be prompt to the payment progress page ,which will show users the details of the paid user's username ,provide,timestamp and status .
+   - Once payment it would be updates on the progress page ,users can click on the progress page and see the progress of their payment . to the payment progress page ,it will also show users the details of the paid user's username ,provide,timestamp and status .
+     ![image](https://github.com/user-attachments/assets/bea64614-c5a8-4adf-943c-dd6686931c33)
+     
   
 6. **Employee login**
-   - Employee log in using their username, account number, and password.
-   - No self-registration process: Users must be manually created and cannot register themselves through the portal.
+   - Employee log in using their employeeID, email, and password.
+   - No self-registration process: only employees can add other employees  and cannot register themselves through the portal.
    - **RegEx**-based input validation ensures that only valid data is accepted.
    - Password hashing and salting: Passwords must be securely hashed and salted using an industry-standard method to protect user credentials.
+   - Default employee details:
+      "fullName" : "Default Employee"
+      "employeeID": "EMP001"
+      "email": "default@gmail.com"
+      "role":"admin"
+      "password": "DefaultEmployeePass123!"
+
+![image](https://github.com/user-attachments/assets/1ead4733-e3cb-4c89-8a35-64d3168cb896)
+
+
 
  7. **Employee data page**
-        -
-        -
+        - Wmployees can see the users username ,account number ,amount (usd),the currency ,the swift code ,provider ,timestamp,status and an action button to approve payment.
+        -Employees will approve payment of details are correct and they will be redircted to the verfication page .In this time the status will go from progress to approved .
+![image](https://github.com/user-attachments/assets/cbb87fdf-612b-4ac4-962d-232411e3a559)
+
  8.**Payment verified page**
+ -The payment verfication page will have the important sent to swift and will verified that the payment has been verified .
+
+![image](https://github.com/user-attachments/assets/95f749b4-5882-42b6-b479-30e706a02f52)
+
 
 9.**Add Employee page**
+-Only an admin can add an employee.The admin will have to add the new employees such as full name ,employee ID,email ,password and role (Admin/employee).
+- **RegEx**-based input validation ensures that only valid data is accepted.
 
+![image](https://github.com/user-attachments/assets/318c5bf3-3c0c-4a83-91fd-27be4cbb5181)
 
-
-
-    
-        
   
      
 ## How It Works

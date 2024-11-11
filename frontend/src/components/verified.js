@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate from react
 import './Verified.css'; // Add the CSS file
 
 export default function Verified() {
-    const navigate = useNavigate(); // Hook to access navigation
+    const navigate = useNavigate(); //Hook to access navigation
 
     // Function to handle redirect
     const handleRedirect = () => {

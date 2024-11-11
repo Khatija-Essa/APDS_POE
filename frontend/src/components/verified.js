@@ -16,8 +16,8 @@ export default function Verified() {
                 className="verified-content" 
                 onClick={handleRedirect} // Add onClick handler for redirection
             >
-                <h3>Payment Verified</h3>
-                <p>The payment has been successfully verified.</p>
+               <h3>Payment Sent to SWIFT and Verified</h3>
+               <p>The payment has been sent to SWIFT and is verified.</p>
             </div>
         </div>
     );

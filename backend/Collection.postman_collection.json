@@ -1,0 +1,40 @@
+{
+	"info": {
+		"_postman_id": "0ce8cdb2-c414-4e35-a08f-d9f6f485497d",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33385556"
+	},
+	"item": [
+		{
+			"name": "Employee login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"fullName\" : \"Default Employee\",\r\n\"employeeID\": \"EMP001\",\r\n\"email\": \"default@gmail.com\",\r\n\"role\":\"admin\",\r\n\"password\": \"DefaultEmployeePass123!\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:3001/employee/login/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"employee",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

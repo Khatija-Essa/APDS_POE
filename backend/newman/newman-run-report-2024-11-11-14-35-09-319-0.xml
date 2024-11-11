@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="New Collection" tests="1" time="0.000">
+  <testsuite name="New Request" id="54a9218f-e173-4a2d-8fe6-228755ca8f54" timestamp="2024-11-11T14:35:09.177Z" tests="0" failures="0" errors="1" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: runtime:extensions~request: request url is empty
+    at Requester.request (C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\postman-runtime\lib\requester\requester.js:421:26)
+    at C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\postman-runtime\lib\runner\extensions\http-request.command.js:156:37
+    at Requester.create (C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\postman-runtime\lib\requester\requester.js:508:16)
+    at RequesterPool.create (C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\postman-runtime\lib\requester\requester-pool.js:67:22)
+    at C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\postman-runtime\lib\runner\extensions\http-request.command.js:105:32
+    at C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\async\dist\async.js:252:13
+    at wrapper (C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\async\dist\async.js:273:20)
+    at replenish (C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\async\dist\async.js:443:29)
+    at C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\async\dist\async.js:453:13
+    at eachOfLimit (C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\async\dist\async.js:479:36)
+    at awaitable (C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\async\dist\async.js:212:32)
+    at eachOfSeries (C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\async\dist\async.js:815:16)
+    at awaitable (C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\async\dist\async.js:212:32)
+    at _asyncMap (C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\async\dist\async.js:245:16)
+    at mapSeries (C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\async\dist\async.js:839:16)
+    at awaitable (C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\async\dist\async.js:212:32)
+
+---
+]]></system-err>
+  </testsuite>
+</testsuites>

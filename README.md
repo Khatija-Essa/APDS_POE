@@ -20,13 +20,13 @@ The portal allows customers to register and execute international payments, whil
    - The first interface is a homepage and it explains what money gold is about.
    - The users has the options to register if they are not a user or to sign in to the application .
      
-![image](https://github.com/user-attachments/assets/90447503-d820-4539-9acc-5198e77fc295)
+ ![image](https://github.com/user-attachments/assets/90447503-d820-4539-9acc-5198e77fc295)
 
 
 2. **About page**:
    - This is were users will be able to read and get to know what the application is about and the process of the application.
 
-  ![image](https://github.com/user-attachments/assets/a9bff9d1-22f3-4e64-85b2-1a0a662b5397)
+ ![image](https://github.com/user-attachments/assets/a9bff9d1-22f3-4e64-85b2-1a0a662b5397)
      
 
 2. **Registration**:
@@ -39,18 +39,21 @@ The portal allows customers to register and execute international payments, whil
 3. **Login**:
    - Customers log in using their username, account number, and password.
    - **RegEx**-based input validation ensures that only valid data is accepted.
-     ![image](https://github.com/user-attachments/assets/e0c399ff-f0d6-4899-826a-378a56557d9c)
+     
+![image](https://github.com/user-attachments/assets/e0c399ff-f0d6-4899-826a-378a56557d9c)
 
 
 
 4.**Payment**:
 - Users will there after have the access to do a payment after logging in .
+  
 ![image](https://github.com/user-attachments/assets/8b2241e5-d09a-40d7-9423-de1ac3bbf16b)
 
 
 5. **Payment progress**
-   - Once payment it would be updates on the progress page ,users can click on the progress page and see the progress of their payment . to the payment progress page ,it will also show users the details of the paid user's username ,provide,timestamp and status .
-     ![image](https://github.com/user-attachments/assets/bea64614-c5a8-4adf-943c-dd6686931c33)
+   - Once payment it would be updates on the progress page ,users can click on the progress page and see the progress of their payment . to the payment progress page ,it will also show users the details of the paid user's username ,provide,timestamp and status.
+     
+![image](https://github.com/user-attachments/assets/bea64614-c5a8-4adf-943c-dd6686931c33)
      
   
 6. **Employee login**
@@ -70,6 +73,7 @@ The portal allows customers to register and execute international payments, whil
  7. **Employee data page**
         -Allows employees to view customer payment details and approve payments after verification.
         -Payment status changes to "Approved" upon successful verification.
+
 ![image](https://github.com/user-attachments/assets/cbb87fdf-612b-4ac4-962d-232411e3a559)
 
  8.**Payment verified page**
@@ -84,8 +88,19 @@ The portal allows customers to register and execute international payments, whil
 
 ![image](https://github.com/user-attachments/assets/318c5bf3-3c0c-4a83-91fd-27be4cbb5181)
 
+## MongoDB:
+- Client_details:
   
-     
+<img width="1112" alt="image" src="https://github.com/user-attachments/assets/70972fd7-7bb9-4c1c-9f17-310292ea82be">
+
+- Employees:
+  
+<img width="1116" alt="image" src="https://github.com/user-attachments/assets/69292586-9d5f-4d38-902f-bdbd7e0d8860">
+
+- Transactions:
+
+<img width="1112" alt="image" src="https://github.com/user-attachments/assets/ffc61f26-0906-468a-adaa-936e75dccf71">
+
 
 
 ## Technologies Used

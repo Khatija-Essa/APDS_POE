@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="New Collection" tests="5" time="0.738">
+  <testsuite name="Employee login" id="46b0a309-797e-471e-a06b-028fb35ecfbb" timestamp="2024-11-11T16:14:47.120Z" tests="0" failures="0" errors="0" time="0.493"/>
+  <testsuite name="Customer login" id="b10f2f75-2d8b-4a5e-a745-2ad1531eaedc" timestamp="2024-11-11T16:14:47.120Z" tests="0" failures="0" errors="1" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: runtime:extensions~request: request url is empty
+    at Requester.request (C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\postman-runtime\lib\requester\requester.js:421:26)
+    at C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\postman-runtime\lib\runner\extensions\http-request.command.js:156:37
+    at Requester.create (C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\postman-runtime\lib\requester\requester.js:508:16)
+    at RequesterPool.create (C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\postman-runtime\lib\requester\requester-pool.js:67:22)
+    at C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\postman-runtime\lib\runner\extensions\http-request.command.js:105:32
+    at C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\async\dist\async.js:252:13
+    at wrapper (C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\async\dist\async.js:273:20)
+    at replenish (C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\async\dist\async.js:443:29)
+    at C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\async\dist\async.js:453:13
+    at eachOfLimit (C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\async\dist\async.js:479:36)
+    at awaitable (C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\async\dist\async.js:212:32)
+    at eachOfSeries (C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\async\dist\async.js:815:16)
+    at awaitable (C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\async\dist\async.js:212:32)
+    at _asyncMap (C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\async\dist\async.js:245:16)
+    at mapSeries (C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\async\dist\async.js:839:16)
+    at awaitable (C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\async\dist\async.js:212:32)
+
+---
+]]></system-err>
+  </testsuite>
+  <testsuite name="failedpaymenttest" id="9b1bab3a-a29e-4901-ad75-a0fb8dedd36b" timestamp="2024-11-11T16:14:47.120Z" tests="0" failures="0" errors="1" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: runtime:extensions~request: request url is empty
+    at Requester.request (C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\postman-runtime\lib\requester\requester.js:421:26)
+    at C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\postman-runtime\lib\runner\extensions\http-request.command.js:156:37
+    at Requester.create (C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\postman-runtime\lib\requester\requester.js:508:16)
+    at RequesterPool.create (C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\postman-runtime\lib\requester\requester-pool.js:67:22)
+    at C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\postman-runtime\lib\runner\extensions\http-request.command.js:105:32
+    at C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\async\dist\async.js:252:13
+    at wrapper (C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\async\dist\async.js:273:20)
+    at replenish (C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\async\dist\async.js:443:29)
+    at C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\async\dist\async.js:453:13
+    at eachOfLimit (C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\async\dist\async.js:479:36)
+    at awaitable (C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\async\dist\async.js:212:32)
+    at eachOfSeries (C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\async\dist\async.js:815:16)
+    at awaitable (C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\async\dist\async.js:212:32)
+    at _asyncMap (C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\async\dist\async.js:245:16)
+    at mapSeries (C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\async\dist\async.js:839:16)
+    at awaitable (C:\Users\lab_services_student\Desktop\POE\APDS_POE\backend\node_modules\async\dist\async.js:212:32)
+
+---
+]]></system-err>
+  </testsuite>
+  <testsuite name="failedpayemntrequest" id="827efdfa-e143-4ae4-9fc2-b18282038b19" timestamp="2024-11-11T16:14:47.120Z" tests="0" failures="0" errors="0" time="0.013"/>
+  <testsuite name="Customer login" id="6dfe3708-0a43-4189-a381-1e1455523315" timestamp="2024-11-11T16:14:47.120Z" tests="0" failures="0" errors="0" time="0.232"/>
+</testsuites>

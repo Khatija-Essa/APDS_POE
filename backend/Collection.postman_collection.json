@@ -35,6 +35,159 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "failedpayemntrequest",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imx1Y3kiLCJlbWFpbCI6Imx1Y3lAZXhhbXBsZS5jb20iLCJhY2NvdW50TnVtYmVyIjoiMTIzNDU2Nzg5NCIsImlhdCI6MTczMTM0MTE3NiwiZXhwIjoxNzMxMzQ0Nzc2fQ.XprBzfuiy4aRmZMesj35i1LbHdpjkdHLMz0pi7b-NNI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"username\": \"lucy\",\r\n\"Account Number\": \"1234567894\",\r\n\"Amount\": 200, \r\n\"Currency\": \"USD\",\r\n\"SWIFTCODE\": \"12345678\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:3001/payment/make-payment",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"payment",
+						"make-payment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Customer login",
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " \r\n {\r\n\"username\":\"lucy\",\r\n\"email\":\"lucy@example.com\",\r\n\"accountNumber\": \"1234567894\",\r\n\"password\":\"Hellow@world1\"\r\n }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:3001/user/login/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"user",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Successpaymentrequest",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imx1Y3kiLCJlbWFpbCI6Imx1Y3lAZXhhbXBsZS5jb20iLCJhY2NvdW50TnVtYmVyIjoiMTIzNDU2Nzg5NCIsImlhdCI6MTczMTM0MTE3NiwiZXhwIjoxNzMxMzQ0Nzc2fQ.XprBzfuiy4aRmZMesj35i1LbHdpjkdHLMz0pi7b-NNI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"username\": \"lucy\",\r\n\"accountNumber\": 1234567894,\r\n\"amount\": 200, \r\n\"currency\": \"USD\",\r\n\"swiftCode\": \"12345678\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:3001/payment/make-payment",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"payment",
+						"make-payment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetPaymentDetails",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imx1Y3kiLCJlbWFpbCI6Imx1Y3lAZXhhbXBsZS5jb20iLCJhY2NvdW50TnVtYmVyIjoiMTIzNDU2Nzg5NCIsImlhdCI6MTczMTM0MTE3NiwiZXhwIjoxNzMxMzQ0Nzc2fQ.XprBzfuiy4aRmZMesj35i1LbHdpjkdHLMz0pi7b-NNI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:3001/payment/get",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"payment",
+						"get"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="New Collection" tests="5" time="1.164">
+  <testsuite name="Employee login" id="121943a2-3065-4a22-bbb2-fe11807f6bd4" timestamp="2024-11-11T16:48:01.569Z" tests="0" failures="0" errors="0" time="0.404"/>
+  <testsuite name="failedpayemntrequest" id="3f50cafe-690a-4f93-b5f1-c7c7fe02f755" timestamp="2024-11-11T16:48:01.569Z" tests="0" failures="0" errors="0" time="0.013"/>
+  <testsuite name="Customer login" id="532719c0-58a3-443a-a597-e59b5d267456" timestamp="2024-11-11T16:48:01.569Z" tests="0" failures="0" errors="0" time="0.245"/>
+  <testsuite name="Successpaymentrequest" id="caacc20c-acec-4d7b-958e-2fecd7e49cad" timestamp="2024-11-11T16:48:01.569Z" tests="0" failures="0" errors="0" time="0.336"/>
+  <testsuite name="GetPaymentDetails" id="6b4e43b9-0c4b-4ada-998e-308b93c154a4" timestamp="2024-11-11T16:48:01.569Z" tests="0" failures="0" errors="0" time="0.166"/>
+</testsuites>

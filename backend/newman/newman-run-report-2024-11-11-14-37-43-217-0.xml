@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="New Collection" tests="1" time="0.000">
+  <testsuite name="Employee login" id="e13513a6-b342-4880-8569-78315e4046d5" timestamp="2024-11-11T14:37:42.981Z" tests="0" failures="0" errors="1" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: certificate has expired
+    at TLSSocket.onConnectSecure (node:_tls_wrap:1674:34)
+    at TLSSocket.emit (node:events:519:28)
+    at TLSSocket._finishInit (node:_tls_wrap:1085:8)
+    at ssl.onhandshakedone (node:_tls_wrap:871:12)
+
+---
+]]></system-err>
+  </testsuite>
+</testsuites>

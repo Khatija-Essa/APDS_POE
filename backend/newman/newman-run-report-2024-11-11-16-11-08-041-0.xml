@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="New Collection" tests="1" time="0.356">
+  <testsuite name="Employee login" id="bda5d10a-f5e4-4f87-a218-f407a90e513b" timestamp="2024-11-11T16:11:07.581Z" tests="0" failures="0" errors="0" time="0.356"/>
+</testsuites>

@@ -5,7 +5,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.mjs",
-    "dev": "nodemon server.mjs"
+    "dev": "nodemon server.mjs",
+    "test-api": "newman run ./Collection.postman_collection.json --insecure -e ./POE.postman_environment.json --reporters cli,junit"
+
   },
   "keywords": [],
   "author": "",
